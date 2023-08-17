@@ -15,7 +15,7 @@ class ReportGenerator
       report.from.beginning_of_day,
       report.to.end_of_day)
 
-    events.group_by(&:date) do |day, events|
+    events.group_by(&:date).each do |day, events|
       if events.length == 2 && event.first.in? && event.second.out?
         report.worktime += (event.second.timestamp - event.first.timestamp)
       else
