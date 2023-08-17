@@ -11,17 +11,15 @@ class Report
   validate :date_range
 
   def initialize(from:, to:, employee_id:)
-    self.from = from
-    self.to = to
-    self.employee_id = employee_id
+    @from = Date.new(from)
+    @to = Date.new(to)
+    @employee_id = employee_id
   end
   # TODO: represents the actual report, validate data and implement report methods
 
   private
 
   def date_range
-    return if from.is_a?(Date) && to.is_a?(Date) && to >= from
-
-    errors.add(:date_range, :invalid)
+    errors.add(:date_range, :invalid) if from > to
   end
 end
