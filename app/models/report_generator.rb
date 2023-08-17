@@ -8,7 +8,7 @@ class ReportGenerator
   end
 
   def generate
-    return if report.invalid?
+    # return if report.invalid?
 
     events = Event.where("employee_id = ? AND timestamp >= ? AND timestamp <= ?",
       report.employee_id,
