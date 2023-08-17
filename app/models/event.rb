@@ -6,4 +6,8 @@ class Event < ApplicationRecord
   validates :employee_id, presence: true
   validates :timestamp, presence: true
   validates :kind, presence: true
+
+  def date
+    timestamp.to_date
+  end
 end
