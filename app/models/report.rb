@@ -14,6 +14,8 @@ class Report
     @from = Date.new(from)
     @to = Date.new(to)
     @employee_id = employee_id
+    @worktime_hrs = 0.0
+    @problematic_dates = []
   end
   # TODO: represents the actual report, validate data and implement report methods
 
