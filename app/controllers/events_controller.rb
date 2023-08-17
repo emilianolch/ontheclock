@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  # TODO: implement the event saving endpoint
+  def save
+    event = Event.new(event_params)
+
+    if (event.save)
+      head(:ok)
+    else
+      head(:bad_request)
+    end
+  end
+
+  private
+
+  def event_params
+    params.permit(:employee_id, :timestamp, :kind)
+  end
 end
