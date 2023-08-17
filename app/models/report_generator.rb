@@ -14,5 +14,15 @@ class ReportGenerator
       report.employee_id,
       report.from.beginning_of_day,
       report.to.end_of_day)
-  # TODO: - fetch range of events and generate Report
+
+    events.group_by(&:date) do |day, events|
+      if events.length == 2 && event.first.in? && event.second.out?
+        report.worktime += event.worktime
+      else
+        report.problematic_dates << day
+      end
+    end
+
+    report
+  end
 end
