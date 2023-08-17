@@ -7,7 +7,6 @@ class EventsController < ApplicationController
     if (event.save)
       head(:ok)
     else
-      p event.errors.inspect
       head(:bad_request)
     end
   end
