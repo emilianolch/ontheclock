@@ -17,7 +17,7 @@ class ReportGenerator
 
     events.group_by(&:date) do |day, events|
       if events.length == 2 && event.first.in? && event.second.out?
-        report.worktime += event.worktime
+        report.worktime += (event.second.timestamp - event.first.timestamp)
       else
         report.problematic_dates << day
       end
