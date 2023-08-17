@@ -7,6 +7,10 @@ class Event < ApplicationRecord
   validates :timestamp, presence: true
   validates :kind, presence: true
 
+  def timestamp=(unix)
+    self.timestamp = Time.new(unix)
+  end
+  
   def date
     timestamp.to_date
   end
