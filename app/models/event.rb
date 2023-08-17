@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
-  # TODO: implement validations and kind of events
+  enum kind: { in: 1, out: 2}
+
+  validates :employee_id, presence: true
+  validates :timestamp, presence: true
+  validates :kind, presence: true
 end
