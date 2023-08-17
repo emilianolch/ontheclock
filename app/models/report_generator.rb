@@ -3,12 +3,12 @@
 class ReportGenerator
   attr_reader :report
 
-  def initialize(**params)
-    @report = Report.new(params)
+  def initialize(in:, out:, employee_id:)
+    @report = Report.new(in:, out:, employee_id:)
   end
 
   def generate
-    # return if report.invalid?
+    return if report.invalid?
 
     events = Event.where("employee_id = ? AND timestamp >= ? AND timestamp <= ?",
       report.employee_id,
