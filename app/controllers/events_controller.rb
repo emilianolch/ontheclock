@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
+# Event registration endpoint.
 class EventsController < ApplicationController
   def save
-    event = Event.new(event_params)
-
-    if (event.save)
-      head(:ok)
-    else
-      head(:bad_request)
-    end
+    Event.create!(event_params)
+    head(:ok)
+  rescue ActiveRecord::RecordInvalid, ArgumentError
+    head(:bad_request)
   end
 
   private

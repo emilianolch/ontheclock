@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
+# Report generator endpoint
 class ReportsController < ApplicationController
-  # TODO: implement report generation endpoint - it should delegate to ReportGenerator
   def get
-    report = ReportGenerator.new(report_params).generate
+    report = ReportGenerator.create_report(report_params)
 
     if report
-      render json: report
+      render json: report.to_json
     else
       head(:bad_request)
     end
@@ -15,6 +15,6 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.permit(:from, :to, :employee_id)
+    params.permit(:from, :to, :employee_id).to_h.symbolize_keys
   end
 end
